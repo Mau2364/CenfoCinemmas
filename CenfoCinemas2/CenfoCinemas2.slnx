@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../CoreApp/CoreApp.csproj" />
+  <Project Path="../DataAccess/DataAccess.csproj" />
+  <Project Path="../Entities/Entities-DTOS.csproj" />
+  <Project Path="../WebAPI/WebAPI.csproj" />
+</Solution>

@@ -1,14 +1,30 @@
 <Solution>
-  <Folder Name="/0_Entities-DTOS/">
-    <Project Path="../../../../../../Documents/Cenfotec/5 cuatri/Proyecto 2/Tecnico/Programas/Entities-DTOS/Entities/Entities-DTOS.csproj" />
+  <Folder Name="/CoreApp/">
+    <File Path="CoreApp/Class1.cs" />
+    <File Path="CoreApp/CoreApp.csproj" />
   </Folder>
-  <Folder Name="/1_DataAccess/">
-    <Project Path="../../../../../../Documents/Cenfotec/5 cuatri/Proyecto 2/Tecnico/Programas/Entities-DTOS/DataAccess/DataAccess.csproj" />
+  <Folder Name="/DataAccess/" />
+  <Folder Name="/DataAccess/CRUD/">
+    <File Path="DataAccess/CRUD/CrudFactory.cs" />
+    <File Path="DataAccess/CRUD/UserCrudFactory.cs" />
   </Folder>
-  <Folder Name="/2_CoreApp/">
-    <Project Path="../../../../../../Documents/Cenfotec/5 cuatri/Proyecto 2/Tecnico/Programas/Entities-DTOS/CoreApp/CoreApp.csproj" />
+  <Folder Name="/DataAccess/DAO/">
+    <File Path="SqlDao.cs" />
+    <File Path="SqlOperation.cs" />
   </Folder>
-  <Folder Name="/3_WebAPI/">
-    <Project Path="../../../../../../Documents/Cenfotec/5 cuatri/Proyecto 2/Tecnico/Programas/Entities-DTOS/WebAPI/WebAPI.csproj" />
+  <Folder Name="/DataAccess/DB Scripts/">
+    <File Path="spCreateUser.sql" />
+    <File Path="tbUsers.sql" />
   </Folder>
+  <Folder Name="/Entities-DTOS/">
+    <File Path="Entities-DTOS/Entities-DTOS.csproj" />
+  </Folder>
+  <Folder Name="/Entities/">
+    <File Path="BaseDTO.cs" />
+    <File Path="Entities-DTOS/Entities-DTOS.csproj" />
+    <File Path="Movie.cs" />
+    <File Path="Ticket.cs" />
+    <File Path="Users.cs" />
+  </Folder>
+  <Folder Name="/WebAPI/" />
 </Solution>
