@@ -1,4 +1,12 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/99_TestBot/">
+    <Project Path="ConsoleApp-Test/ConsoleApp-Test/ConsoleApp-Test.csproj" />
+  </Folder>
   <Project Path="../CoreApp/CoreApp.csproj" />
   <Project Path="../DataAccess/DataAccess.csproj" />
   <Project Path="../Entities/Entities-DTOS.csproj" />
