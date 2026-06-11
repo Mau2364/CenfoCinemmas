@@ -2,11 +2,17 @@
 
 using DataAccess.DAO;
 
+
+
+
+
 public class Program
 {
+
     public static void Main(string[] args)
     {
         var sqlDao = SqlDao.getInstance();
+        sqlDao.TestConnection();
 
         var sqlOperation = new SqlOperation();
 
@@ -29,6 +35,8 @@ public class Program
 
         Console.WriteLine("Ingrese el numero de telefono");
         var phone = int.Parse(Console.ReadLine());
+
+
 
 
         sqlOperation.ProcedureName = "CRE_USER_PR";

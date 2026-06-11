@@ -60,5 +60,14 @@ namespace DataAccess.DAO
                 }
             }
         }
+        // lo puse para probar la conexion
+        public void TestConnection()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                Console.WriteLine("Conexión exitosa.");
+            }
+        }
     }
 }
