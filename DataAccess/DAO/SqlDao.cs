@@ -25,7 +25,7 @@ namespace DataAccess.DAO
         // Paso 2: Redefinir el constructor default de la clase
         private SqlDao()
         {
-            connectionString = string.Empty;
+            connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=cenfocinemas;Integrated Security=True;Trust Server Certificate=True";
         }
 
         // Paso 3: definir un metodo estatico que expone la instancia

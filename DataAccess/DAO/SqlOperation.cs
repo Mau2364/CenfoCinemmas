@@ -12,24 +12,28 @@ namespace DataAccess.DAO
 
         public List<SqlParameter> Parameters { get; set; }
 
-        public SqlOperation() {
+        public SqlOperation()
+        {
             Parameters = new List<SqlParameter>();
-                }
+        }
 
         //solo vamos a trabajar con estos 4 tipos
-        public void AddStringParameter (string parameterName, string value)
+        public void AddStringParameter(string parameterName, string value)
         {
-            Parameters.Add (new SqlParameter(parameterName, value));
+            Parameters.Add(new SqlParameter(parameterName, value));
         }
 
-        public void AddIntParameter (string parameterName, int value) {
+        public void AddIntParameter(string parameterName, int value)
+        {
             Parameters.Add(new SqlParameter(parameterName, value));
+        }
+        public void AddDouble(string parameterName, double value)
+        {
+            Parameters.Add(new SqlParameter(parameterName, value));
+        }
+        public void AddDateTimeParameter(string parameterName, DateTime value)
+        {
+            Parameters.Add(new SqlParameter(parameterName, value));
+        }
     }
-        public void AddDouble(string parameterName, double value) {
-            Parameters.Add(new SqlParameter(parameterName, value));
-                }
-        public void AddDateTimeParameter(string parameterName, DateTime value) {
-            Parameters.Add(new SqlParameter(parameterName, value));
-        }
 }
-

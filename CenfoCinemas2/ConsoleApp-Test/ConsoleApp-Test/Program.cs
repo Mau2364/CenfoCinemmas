@@ -1,4 +1,6 @@
-﻿using DataAccess.DAO;
+﻿using System; // ya que uso console.write... y dateTime.Parse..
+
+using DataAccess.DAO;
 
 public class Program
 {

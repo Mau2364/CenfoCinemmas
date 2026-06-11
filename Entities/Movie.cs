@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities-DTOS
+namespace Entities_DTOS
 {
     public class Movie: BaseDTO
 {
