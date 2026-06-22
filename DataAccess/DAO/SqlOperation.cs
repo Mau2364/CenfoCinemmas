@@ -35,5 +35,9 @@ namespace DataAccess.DAO
         {
             Parameters.Add(new SqlParameter(parameterName, value));
         }
+        public void AddTimeParameter(string parameterName, TimeSpan value)
+        {
+            Parameters.Add(new SqlParameter(parameterName, value));
+        }
     }
 }

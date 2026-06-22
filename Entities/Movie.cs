@@ -10,7 +10,6 @@ namespace Entities_DTOS
     public string Synopsis { get; set; }
     public string Gender { get; set; }
     public TimeSpan Duration { get; set; }
-
     public string Clasificacion { get; set; }
 
     public string Image {  get; set; }
