@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities_DTOS
 {
-    internal class Ticket
+    public class Ticket : BaseDTO
 {
     public double Price { get; set; }
     

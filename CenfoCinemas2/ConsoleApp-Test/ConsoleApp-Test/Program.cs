@@ -1,6 +1,8 @@
-﻿using System; // ya que uso console.write... y dateTime.Parse..
-
+﻿using DataAccess.CRUD;
 using DataAccess.DAO;
+using Entities_DTOS;
+using System; // ya que uso console.write... y dateTime.Parse..
+using System.Net.Sockets;
 
 
 public class Program
@@ -83,22 +85,33 @@ public class Program
 
         sqlOperation.ProcedureName = "CRE_USER_PR";
 
-        sqlOperation.AddStringParameter("P_USER_CODE", userCode);
-        sqlOperation.AddStringParameter("P_NAME", name);
-        sqlOperation.AddStringParameter("P_EMAIL", email);
-        sqlOperation.AddStringParameter("P_PASSWORD", password);
-        sqlOperation.AddDateTimeParameter("P_DATE_BIRTH", dateBirth);
-        sqlOperation.AddStringParameter("P_STATUS", "AC");
-        sqlOperation.AddIntParameter("P_PHONE_NUMBER", phone);
+        /*  sqlOperation.AddStringParameter("P_USER_CODE", userCode);
+          sqlOperation.AddStringParameter("P_NAME", name);
+          sqlOperation.AddStringParameter("P_EMAIL", email);
+          sqlOperation.AddStringParameter("P_PASSWORD", password);
+          sqlOperation.AddDateTimeParameter("P_DATE_BIRTH", dateBirth);
+          sqlOperation.AddStringParameter("P_STATUS", "AC");
+          sqlOperation.AddIntParameter("P_PHONE_NUMBER", phone);
 
-        sqlDao.ExecuteProcedure(sqlOperation);
+          sqlDao.ExecuteProcedure(sqlOperation); */
+
+        var userDTO = new User();
+        userDTO.UserCode = userCode;
+        userDTO.Name = name;
+        userDTO.Email = email;
+        userDTO.Password = password;
+        userDTO.DateBirth = dateBirth;
+        userDTO.Status = "AC";
+        userDTO.PhoneNumber = phone;
+
+        var uCrud = new UserCrudFactory();
+        uCrud.Create(userDTO);
 
         Console.WriteLine("Usuario creado correctamente");
     }
     static void CrearMovie(SqlDao sqlDao)
     {
-        var sqlOperation = new SqlOperation();
-
+     
         Console.Write("Titulo: ");
         var title = Console.ReadLine();
 
@@ -108,34 +121,32 @@ public class Program
         Console.Write("Genero: ");
         var gender = Console.ReadLine();
 
-        Console.Write("Duracion (HH:mm:ss): ");
-        var duration = TimeSpan.Parse(Console.ReadLine());
 
         Console.Write("Clasificacion: ");
         var clasificacion = Console.ReadLine();
 
         Console.Write("Imagen: ");
         var image = Console.ReadLine();
-
         var status = "AC";
 
-        sqlOperation.ProcedureName = "CRE_MOVIE_PR";
+        var movieDTO = new Movie();
 
-        sqlOperation.AddStringParameter("P_TITLE", title);
-        sqlOperation.AddStringParameter("P_SYNOPSIS", synopsis);
-        sqlOperation.AddStringParameter("P_GENDER", gender);
-        sqlOperation.AddStringParameter("P_CLASIFICACION", clasificacion);
-        sqlOperation.AddStringParameter("P_IMAGE", image);
-        sqlOperation.AddStringParameter("P_STATUS", status);
+        movieDTO.Title = title;
+        movieDTO.Synopsis = synopsis;
+        movieDTO.Gender = gender;
+        movieDTO.Clasificacion = clasificacion;
+        movieDTO.Image = image;
+        movieDTO.Status = "AC";
 
-        sqlDao.ExecuteProcedure(sqlOperation);
+        var mCrud = new MovieCrudFactory();
+        mCrud.Create(movieDTO);
 
         Console.WriteLine("Película creada correctamente");
     }
 
     static void CrearTicket(SqlDao sqlDao)
     {
-        var sqlOperation = new SqlOperation();
+   
 
         Console.Write("Precio: ");
         var price = decimal.Parse(Console.ReadLine());
@@ -152,15 +163,18 @@ public class Program
         Console.Write("ID de la película: ");
         var movieId = int.Parse(Console.ReadLine());
 
-        sqlOperation.ProcedureName = "CRE_TICKET_PR";
+        var ticketDTO = new Ticket();
 
-        sqlOperation.AddDecimalParameter("P_PRICE", price);
-        sqlOperation.AddTimeParameter("P_SCHEDULE", schedule);
-        sqlOperation.AddDateTimeParameter("P_DATE", date);
-        sqlOperation.AddStringParameter("P_TYPE", type);
-        sqlOperation.AddIntParameter("P_MOVIE_ID", movieId);
+        ticketDTO.Price = (double)price;
+        ticketDTO.Schedule = schedule;
+        ticketDTO.Date = date;
+        ticketDTO.Type = type;
 
-        sqlDao.ExecuteProcedure(sqlOperation);
+        ticketDTO.Movie = new Movie();
+        ticketDTO.Movie.Id = movieId;
+
+        var tCrud = new TicketCrudFactory();
+        tCrud.Create(ticketDTO);
 
         Console.WriteLine("Ticket creado correctamente");
     }
