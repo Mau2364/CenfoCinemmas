@@ -13,4 +13,4 @@ namespace Entities_DTOS
     public string Type { get; set; } // adult, kids
     public Movie Movie { get; set; }
 }
-}
+} 

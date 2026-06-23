@@ -3,6 +3,9 @@ using DataAccess.DAO;
 using Entities_DTOS;
 using System; // ya que uso console.write... y dateTime.Parse..
 using System.Net.Sockets;
+using System.Text.Json.Serialization;
+
+using System.Text.Json;
 
 
 public class Program
@@ -30,7 +33,8 @@ public class Program
             Console.WriteLine("1. Crear Usuario");
             Console.WriteLine("2. Crear Pelicula");
             Console.WriteLine("3. Crear Ticket");
-            Console.WriteLine("4. Salir");
+            Console.WriteLine("4. Listar Usuarios");
+            Console.WriteLine("5. Salir");
             Console.Write("Seleccione una opcion: ");
 
             opcion = int.Parse(Console.ReadLine());
@@ -50,6 +54,9 @@ public class Program
                     break;
 
                 case 4:
+                    LstUsers();
+                    break;
+                case 5:
                     Console.WriteLine("Saliendo...");
                     break;
 
@@ -58,7 +65,7 @@ public class Program
                     break;
             }
 
-        } while (opcion != 4);
+        } while (opcion != 5);
     }
 
     static void CrearUsuario(SqlDao sqlDao)
@@ -177,5 +184,24 @@ public class Program
         tCrud.Create(ticketDTO);
 
         Console.WriteLine("Ticket creado correctamente");
+    }
+    static void LstUsers()
+    {
+        Console.WriteLine("Listado de usuarios del aplicativo ");
+
+        var uCrud= new UserCrudFactory();
+        var lstUsers = uCrud.RetrieveAll<User>();
+
+        foreach (var user in lstUsers)
+        {
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine($"Id: {user.Id}");
+            Console.WriteLine($"Código: {user.UserCode}");
+            Console.WriteLine($"Nombre: {user.Name}");
+            Console.WriteLine($"Correo: {user.Email}");
+            Console.WriteLine($"Estado: {user.Status}");
+            Console.WriteLine($"Fecha Nacimiento: {user.DateBirth}");
+            Console.WriteLine($"Teléfono: {user.PhoneNumber}");
+        }
     }
 }
