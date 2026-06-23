@@ -34,7 +34,9 @@ public class Program
             Console.WriteLine("2. Crear Pelicula");
             Console.WriteLine("3. Crear Ticket");
             Console.WriteLine("4. Listar Usuarios");
-            Console.WriteLine("5. Salir");
+            Console.WriteLine("5. Listar Movies");
+            Console.WriteLine("6. Listar Tickets");
+            Console.WriteLine("7. Salir");
             Console.Write("Seleccione una opcion: ");
 
             opcion = int.Parse(Console.ReadLine());
@@ -57,6 +59,12 @@ public class Program
                     LstUsers();
                     break;
                 case 5:
+                    LstMovies();
+                    break;
+                case 6:
+                    LstTickets();
+                    break;
+                case 7:
                     Console.WriteLine("Saliendo...");
                     break;
 
@@ -65,7 +73,7 @@ public class Program
                     break;
             }
 
-        } while (opcion != 5);
+        } while (opcion != 7);
     }
 
     static void CrearUsuario(SqlDao sqlDao)
@@ -202,6 +210,41 @@ public class Program
             Console.WriteLine($"Estado: {user.Status}");
             Console.WriteLine($"Fecha Nacimiento: {user.DateBirth}");
             Console.WriteLine($"Teléfono: {user.PhoneNumber}");
+        }
+    }
+    static void LstMovies()
+    {
+        Console.WriteLine("Listado de películas");
+
+        var mCrud = new MovieCrudFactory();
+        var lstMovies = mCrud.RetrieveAll<Movie>();
+
+        foreach (var movie in lstMovies)
+        {
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine($"Id: {movie.Id}");
+            Console.WriteLine($"Título: {movie.Title}");
+            Console.WriteLine($"Género: {movie.Gender}");
+            Console.WriteLine($"Clasificación: {movie.Clasificacion}");
+            Console.WriteLine($"Estado: {movie.Status}");
+        }
+    }
+    static void LstTickets()
+    {
+        Console.WriteLine("Listado de tickets");
+
+        var tCrud = new TicketCrudFactory();
+        var lstTickets = tCrud.RetrieveAll<Ticket>();
+
+        foreach (var ticket in lstTickets)
+        {
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine($"Id: {ticket.Id}");
+            Console.WriteLine($"Precio: {ticket.Price}");
+            Console.WriteLine($"Horario: {ticket.Schedule}");
+            Console.WriteLine($"Fecha: {ticket.Date}");
+            Console.WriteLine($"Tipo: {ticket.Type}");
+            Console.WriteLine($"Movie Id: {ticket.Movie?.Id}");
         }
     }
 }

@@ -30,8 +30,44 @@ namespace DataAccess.CRUD
             sqlDao.ExecuteProcedure(sqlOperation);
         }
 
+        public override List<T> RetrieveAll<T>()
+        {
+            var lstMovies = new List<T>();
+
+            var operation = new SqlOperation();
+            operation.ProcedureName = "RET_ALL_MOVIE_PR";
+
+            var lstResults = sqlDao.ExecuteQueryProcedure(operation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var result in lstResults)
+                {
+                    var movie = BuildMovie(result);
+
+                    lstMovies.Add((T)Convert.ChangeType(movie, typeof(T)));
+                }
+            }
+
+            return lstMovies;
+        }
+
+        private Movie BuildMovie(Dictionary<string, object> row)
+        {
+            return new Movie()
+            {
+                Id = (int)row["Id"],
+                Created = (DateTime)row["Created"],
+                Title = (string)row["Title"],
+                Synopsis = (string)row["Synopsis"],
+                Gender = (string)row["Gender"],
+                Clasificacion = (string)row["Clasificacion"],
+                Image = (string)row["Image"],
+                Status = (string)row["Status"]
+            };
+        }
+
         public override void Delete(BaseDTO baseDTO) => throw new NotImplementedException();
-        public override List<T> RetrieveAll<T>() => throw new NotImplementedException();
         public override T RetrieveById<T>(int id) => throw new NotImplementedException();
         public override void Update(BaseDTO baseDTO) => throw new NotImplementedException();
     }

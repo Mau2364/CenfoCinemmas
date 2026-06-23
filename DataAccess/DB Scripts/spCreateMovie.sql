@@ -9,6 +9,7 @@
 )
 AS
 BEGIN
+    SET NOCOUNT ON;
     INSERT INTO tblMovie
     (
         Created,

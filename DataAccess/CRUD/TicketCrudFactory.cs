@@ -31,8 +31,45 @@ namespace DataAccess.CRUD
             sqlDao.ExecuteProcedure(sqlOperation);
         }
 
+        public override List<T> RetrieveAll<T>()
+        {
+            var lstTickets = new List<T>();
+
+            var operation = new SqlOperation();
+            operation.ProcedureName = "RET_ALL_TICKET_PR";
+
+            var lstResults = sqlDao.ExecuteQueryProcedure(operation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var result in lstResults)
+                {
+                    var ticket = BuildTicket(result);
+
+                    lstTickets.Add((T)Convert.ChangeType(ticket, typeof(T)));
+                }
+            }
+
+            return lstTickets;
+        }
+
+        private Ticket BuildTicket(Dictionary<string, object> row)
+        {
+            return new Ticket()
+            {
+                Id = (int)row["Id"],
+                Price = Convert.ToDouble(row["Price"]),
+                Schedule = (TimeSpan)row["Schedule"],
+                Date = (DateTime)row["DateTicket"],
+                Type = (string)row["Type"],
+                Movie = new Movie()
+                {
+                    Id = (int)row["MovieId"]
+                }
+            };
+        }
+
         public override void Delete(BaseDTO baseDTO) => throw new NotImplementedException();
-        public override List<T> RetrieveAll<T>() => throw new NotImplementedException();
         public override T RetrieveById<T>(int id) => throw new NotImplementedException();
         public override void Update(BaseDTO baseDTO) => throw new NotImplementedException();
     }
