@@ -1,53 +1,47 @@
 ﻿using CoreApp;
 using Entities_DTOS;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class TicketsController : ControllerBase
     {
-
         [HttpGet]
         [Route("RetrieveAll")]
         public ActionResult RetrieveAll()
-
         {
             try
             {
-                var um = new UserManager();
+                var tm = new TicketManager();
 
-                var lstResults = um.RetrieveAllUsers();
+                var lstResults = tm.RetrieveAllTickets();
 
                 return Ok(lstResults);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-
             }
-
         }
+
         [HttpPost]
         [Route("Create")]
-
-        public ActionResult Create(User user)
+        public ActionResult Create(Ticket ticket)
         {
             try
             {
-                var um = new UserManager();
-                um.Create(user);
-                return Ok(user);
+                var tm = new TicketManager();
+
+                tm.Create(ticket);
+
+                return Ok(ticket);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
     }
-   
 }

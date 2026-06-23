@@ -1,53 +1,47 @@
 ﻿using CoreApp;
 using Entities_DTOS;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class MoviesController : ControllerBase
     {
-
         [HttpGet]
         [Route("RetrieveAll")]
         public ActionResult RetrieveAll()
-
         {
             try
             {
-                var um = new UserManager();
+                var mm = new MovieManager();
 
-                var lstResults = um.RetrieveAllUsers();
+                var lstResults = mm.RetrieveAllMovies();
 
                 return Ok(lstResults);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-
             }
-
         }
+
         [HttpPost]
         [Route("Create")]
-
-        public ActionResult Create(User user)
+        public ActionResult Create(Movie movie)
         {
             try
             {
-                var um = new UserManager();
-                um.Create(user);
-                return Ok(user);
+                var mm = new MovieManager();
+
+                mm.Create(movie);
+
+                return Ok(movie);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
     }
-   
 }
