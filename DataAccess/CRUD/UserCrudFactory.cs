@@ -65,7 +65,20 @@ namespace DataAccess.CRUD
 
         public override T RetrieveById<T>(int id)
         {
-            throw new NotImplementedException();
+            var operation = new SqlOperation();
+            operation.ProcedureName = "RET_USER_BY_ID_PR";
+            operation.AddIntParameter("P_ID", id);
+
+            var lstResults = sqlDao.ExecuteQueryProcedure(operation);
+
+            if(lstResults.Count > 0)
+            {
+                var item = lstResults[0];
+                var user = BuildUser(item);
+                return(T) Convert.ChangeType(user, typeof(T));
+            }
+
+            return default(T);
         }
 
         public override void Update(BaseDTO baseDTO)
