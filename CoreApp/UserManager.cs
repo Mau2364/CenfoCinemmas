@@ -20,5 +20,17 @@ namespace CoreApp
             var uCrud = new UserCrudFactory();
             uCrud.Create(u);
         }
+
+        public void Update(User u) { 
+        
+            var uCrud = new UserCrudFactory();
+            uCrud.Update(u);
+        }
+
+        public void Delete(User u)
+        {
+            var uCrud = new UserCrudFactory();
+            uCrud.Delete(u);
+        }
     }
 }

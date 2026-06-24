@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE [dbo].[DEL_USER.PR]
+(
+	@P_ID INT
+)	
+AS
+BEGIN
+	DELETE FROM tblUsers 
+	
+	where Id= @P_ID;
+END
+GO

@@ -1,0 +1,26 @@
+﻿CREATE PROCEDURE [dbo].[UPD_USER.PR]
+(
+	@P_ID INT,
+	@P_USER_CODE NVARCHAR(25),
+	@P_NAME NVARCHAR (50),
+	@P_EMAIL NVARCHAR(30), 
+	@P_PASSWORD NVARCHAR (20),
+	@P_DATE_BIRTH DATETIME,
+	@P_STATUS NVARCHAR (2),
+	@P_PHONE_NUMBER INT
+)	
+AS
+BEGIN
+	UPDATE tblUsers 
+	SET 
+	UserCode = @P_USER_CODE,
+	Name = @P_NAME,
+	Email =  @P_EMAIL,
+	Password=  @P_PASSWORD,
+	DateBirth =  @P_DATE_BIRTH,
+	Status = @P_STATUS,
+	PhoneNumber =  @P_PHONE_NUMBER,
+	Updated = GETDATE()
+	where Id= @P_ID;
+END
+GO
