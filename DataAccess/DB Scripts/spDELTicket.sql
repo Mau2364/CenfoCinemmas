@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE DEL_TICKET_PR
+(
+    @P_ID INT
+)
+AS
+BEGIN
+    DELETE FROM tblTicket
+    WHERE Id = @P_ID;
+END

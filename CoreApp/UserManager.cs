@@ -19,19 +19,45 @@ namespace CoreApp
         public void Create(User u)
         {
             var uCrud = new UserCrudFactory();
-            //validamos si el user es mayor de edad
-            if (IsOver18(u))
-            {
-                uCrud.Create(u);
-            }
-            else
-            {
-                throw new Exception("El usuario no comple con la edad minima para el registro");
-            }
+
             if (HasEmptyFields(u))
             {
-                throw new Exception("Se deben completar todos los campos ");
+                throw new Exception("Todos los campos son obligatorios");
             }
+
+            if (!IsBirthDateValid(u))
+            {
+                throw new Exception("La fecha de nacimiento no puede ser futura");
+            }
+
+            if (!IsOver18(u))
+            {
+                throw new Exception("El usuario debe ser mayor de edad");
+            }
+
+            if (!IsValidStatus(u))
+            {
+                throw new Exception("El estado debe ser Activo o Inactivo");
+            }
+
+            if (EmailExists(u.Email))
+            {
+                throw new Exception("El correo ya se encuentra registrado");
+            }
+
+            if (UserCodeExists(u.UserCode))
+            {
+                throw new Exception("El código de usuario ya existe");
+            }
+            if (!IsValidEmail(u.Email))
+            {
+                throw new Exception("El correo no tiene un formato válido");
+            }
+            if (!IsValidPhone(u))
+            {
+                throw new Exception("El teléfono debe tener al menos 8 dígitos");
+            }
+            uCrud.Create(u);
         }
 
         public void Update(User u) { 
@@ -68,6 +94,39 @@ namespace CoreApp
           string.IsNullOrWhiteSpace(user.Password) ||
           string.IsNullOrWhiteSpace(user.Status)||
           user.PhoneNumber <=0;
+        }
+
+        private bool IsValidStatus(User user)
+        {
+            return user.Status == "AC" ||
+                   user.Status == "IN";
+        }
+        private bool IsBirthDateValid(User user)
+        {
+            return user.DateBirth <= DateTime.Now;
+        }
+        private bool EmailExists(string email)
+        {
+            var uCrud = new UserCrudFactory();
+
+            return uCrud.RetrieveByEmail(email.Trim().ToLower()) != null; 
+        }
+        private bool UserCodeExists(string userCode)
+        {
+            var uCrud = new UserCrudFactory();
+
+            return uCrud.RetrieveByUserCode(userCode) != null;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            return !string.IsNullOrWhiteSpace(email)
+                && email.Contains("@")
+                && email.Contains(".");
+        }
+        private bool IsValidPhone(User user)
+        {
+            return user.PhoneNumber >= 10000000; // mínimo 8 dígitos
         }
     }
 }

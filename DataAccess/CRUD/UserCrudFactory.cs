@@ -126,6 +126,43 @@ namespace DataAccess.CRUD
             };
             return user;
         }
+
+        //metodo para obtener el email, se usa para validar que sea unico
+        public User RetrieveByEmail(string email)
+        {
+            var operation = new SqlOperation();
+
+            operation.ProcedureName = "RET_USER_BY_EMAIL_PR";
+            operation.AddStringParameter("P_EMAIL", email);
+
+            var lstResults = sqlDao.ExecuteQueryProcedure(operation);
+
+            if (lstResults.Count > 0)
+            {
+                var item = lstResults[0];
+                return BuildUser(item);
+            }
+
+            return null;
+        }
+        // para obtener por codigo 
+        public User RetrieveByUserCode(string userCode)
+        {
+            var operation = new SqlOperation();
+
+            operation.ProcedureName = "RET_USER_BY_CODE_PR";
+            operation.AddStringParameter("P_USER_CODE", userCode);
+
+            var lstResults = sqlDao.ExecuteQueryProcedure(operation);
+
+            if (lstResults.Count > 0)
+            {
+                var item = lstResults[0];
+                return BuildUser(item);
+            }
+
+            return null;
+        }
     }
 }
 

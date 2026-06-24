@@ -24,6 +24,18 @@ namespace CoreApp
             mCrud.Create(m);
         }
 
+        public void Update(Movie m)
+        {
+            var crud = new MovieCrudFactory();
+            crud.Update(m);
+        }
+
+        public void Delete(Movie m)
+        {
+            var crud = new MovieCrudFactory();
+            crud.Delete(m);
+        }
+
         //validacion de campos
         private bool HasEmptyFields(Movie movie)
         {
@@ -34,5 +46,6 @@ namespace CoreApp
                    string.IsNullOrWhiteSpace(movie.Image) ||
                    string.IsNullOrWhiteSpace(movie.Status);
         }
+
     }
 }

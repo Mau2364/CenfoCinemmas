@@ -69,8 +69,34 @@ namespace DataAccess.CRUD
             };
         }
 
-        public override void Delete(BaseDTO baseDTO) => throw new NotImplementedException();
+        public override void Delete(BaseDTO baseDTO)
+        {
+            var ticket = baseDTO as Ticket;
+
+            var sqlOperation = new SqlOperation();
+            sqlOperation.ProcedureName = "DEL_TICKET_PR";
+
+            sqlOperation.AddIntParameter("P_ID", ticket.Id);
+
+            sqlDao.ExecuteProcedure(sqlOperation);
+        }
         public override T RetrieveById<T>(int id) => throw new NotImplementedException();
-        public override void Update(BaseDTO baseDTO) => throw new NotImplementedException();
+
+        public override void Update(BaseDTO baseDTO)
+        {
+            var ticket = baseDTO as Ticket;
+
+            var sqlOperation = new SqlOperation();
+            sqlOperation.ProcedureName = "UPD_TICKET_PR";
+
+            sqlOperation.AddIntParameter("P_ID", ticket.Id);
+            sqlOperation.AddDouble("P_PRICE", ticket.Price);
+            sqlOperation.AddTimeParameter("P_SCHEDULE", ticket.Schedule);
+            sqlOperation.AddDateTimeParameter("P_DATE", ticket.Date);
+            sqlOperation.AddStringParameter("P_TYPE", ticket.Type);
+            sqlOperation.AddIntParameter("P_MOVIE_ID", ticket.Movie.Id);
+
+            sqlDao.ExecuteProcedure(sqlOperation);
+        }
     }
 }

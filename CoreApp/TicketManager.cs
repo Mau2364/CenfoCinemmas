@@ -30,9 +30,21 @@ namespace CoreApp
             {
                 throw new Exception("La fecha del ticket no puede ser anterior a hoy");
             }
-
+           
             var tCrud = new TicketCrudFactory();
             tCrud.Create(t);
+        }
+
+        public void Update(Ticket t)
+        {
+            var crud = new TicketCrudFactory();
+            crud.Update(t);
+        }
+
+        public void Delete(Ticket t)
+        {
+            var crud = new TicketCrudFactory();
+            crud.Delete(t);
         }
 
         //validaciones
@@ -40,5 +52,6 @@ namespace CoreApp
         {
             return string.IsNullOrWhiteSpace(ticket.Type);
         }
+
     }
 }

@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE DEL_MOVIE_PR
+(
+    @P_ID INT
+)
+AS
+BEGIN
+    DELETE FROM tblMovie
+    WHERE Id = @P_ID;
+END

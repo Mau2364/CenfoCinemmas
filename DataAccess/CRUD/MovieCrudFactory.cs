@@ -67,8 +67,34 @@ namespace DataAccess.CRUD
             };
         }
 
-        public override void Delete(BaseDTO baseDTO) => throw new NotImplementedException();
+        public override void Delete(BaseDTO baseDTO)
+        {
+            var movie = baseDTO as Movie;
+
+            var sqlOperation = new SqlOperation();
+            sqlOperation.ProcedureName = "DEL_MOVIE_PR";
+
+            sqlOperation.AddIntParameter("P_ID", movie.Id);
+
+            sqlDao.ExecuteProcedure(sqlOperation);
+        }
         public override T RetrieveById<T>(int id) => throw new NotImplementedException();
-        public override void Update(BaseDTO baseDTO) => throw new NotImplementedException();
+        public override void Update(BaseDTO baseDTO)
+        {
+            var movie = baseDTO as Movie;
+
+            var sqlOperation = new SqlOperation();
+            sqlOperation.ProcedureName = "UPD_MOVIE_PR";
+
+            sqlOperation.AddIntParameter("P_ID", movie.Id);
+            sqlOperation.AddStringParameter("P_TITLE", movie.Title);
+            sqlOperation.AddStringParameter("P_SYNOPSIS", movie.Synopsis);
+            sqlOperation.AddStringParameter("P_GENDER", movie.Gender);
+            sqlOperation.AddStringParameter("P_CLASIFICACION", movie.Clasificacion);
+            sqlOperation.AddStringParameter("P_IMAGE", movie.Image);
+            sqlOperation.AddStringParameter("P_STATUS", movie.Status);
+
+            sqlDao.ExecuteProcedure(sqlOperation);
+        }
     }
 }

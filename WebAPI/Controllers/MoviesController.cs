@@ -15,10 +15,8 @@ namespace WebAPI.Controllers
             try
             {
                 var mm = new MovieManager();
-
-                var lstResults = mm.RetrieveAllMovies();
-
-                return Ok(lstResults);
+                var result = mm.RetrieveAllMovies();
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -33,9 +31,39 @@ namespace WebAPI.Controllers
             try
             {
                 var mm = new MovieManager();
-
                 mm.Create(movie);
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
+        [HttpPut]
+        [Route("Update")]
+        public ActionResult Update(Movie movie)
+        {
+            try
+            {
+                var mm = new MovieManager();
+                mm.Update(movie);
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public ActionResult Delete(Movie movie)
+        {
+            try
+            {
+                var mm = new MovieManager();
+                mm.Delete(movie);
                 return Ok(movie);
             }
             catch (Exception ex)
