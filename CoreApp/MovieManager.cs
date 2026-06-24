@@ -14,8 +14,25 @@ namespace CoreApp
 
         public void Create(Movie m)
         {
+
+            if(HasEmptyFields(m))
+            {
+                throw new Exception("Se deben completar todos los campos");
+            }
+
             var mCrud = new MovieCrudFactory();
             mCrud.Create(m);
+        }
+
+        //validacion de campos
+        private bool HasEmptyFields(Movie movie)
+        {
+            return string.IsNullOrWhiteSpace(movie.Title) ||
+                   string.IsNullOrWhiteSpace(movie.Synopsis) ||
+                   string.IsNullOrWhiteSpace(movie.Gender) ||
+                   string.IsNullOrWhiteSpace(movie.Clasificacion) ||
+                   string.IsNullOrWhiteSpace(movie.Image) ||
+                   string.IsNullOrWhiteSpace(movie.Status);
         }
     }
 }
