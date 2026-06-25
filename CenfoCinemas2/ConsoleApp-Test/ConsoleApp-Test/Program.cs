@@ -244,7 +244,10 @@ public class Program
             Console.WriteLine($"Horario: {ticket.Schedule}");
             Console.WriteLine($"Fecha: {ticket.Date}");
             Console.WriteLine($"Tipo: {ticket.Type}");
-            Console.WriteLine($"Movie Id: {ticket.Movie?.Id}");
+
+            Console.WriteLine($"Película: {ticket.Movie.Title}");
+            Console.WriteLine($"Género: {ticket.Movie.Gender}");
+            Console.WriteLine($"Clasificación: {ticket.Movie.Clasificacion}");
         }
     }
 }

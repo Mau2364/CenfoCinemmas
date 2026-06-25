@@ -62,9 +62,16 @@ namespace DataAccess.CRUD
                 Schedule = (TimeSpan)row["Schedule"],
                 Date = (DateTime)row["DateTicket"],
                 Type = (string)row["Type"],
+
                 Movie = new Movie()
                 {
-                    Id = (int)row["MovieId"]
+                    Id = (int)row["MovieId"],
+                    Title = (string)row["Title"],
+                    Synopsis = (string)row["Synopsis"],
+                    Gender = (string)row["Gender"],
+                    Clasificacion = (string)row["Clasificacion"],
+                    Image = (string)row["Image"],
+                    Status = (string)row["Status"]
                 }
             };
         }
