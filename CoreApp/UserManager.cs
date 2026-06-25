@@ -37,7 +37,7 @@ namespace CoreApp
 
             if (!IsValidStatus(u))
             {
-                throw new Exception("El estado debe ser Activo o Inactivo");
+                throw new Exception("El estado debe ser AC o IN");
             }
 
             if (EmailExists(u.Email))

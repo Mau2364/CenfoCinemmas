@@ -114,7 +114,7 @@ namespace DataAccess.CRUD
         {
             var user = new User()
             {
-                Id = (int)row["Id"],
+                Id = Convert.ToInt32(row["Id"]),
                 Created = (DateTime)row["Created"],
                 UserCode = (string)row["UserCode"],
                 Name = (string)row["Name"],
