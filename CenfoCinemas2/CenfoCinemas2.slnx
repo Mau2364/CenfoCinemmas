@@ -4,6 +4,9 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/4_WebApp/">
+    <Project Path="WebApp2/WebApp2.csproj" Id="4e0ce5e9-f5dd-4d1b-9d30-b974c4962ad3" />
+  </Folder>
   <Folder Name="/99_TestBot/">
     <Project Path="ConsoleApp-Test/ConsoleApp-Test/ConsoleApp-Test.csproj" />
   </Folder>
