@@ -6,7 +6,7 @@ function UserViewController() {
     this.ViewName = "Users";
 
     //API que vamos a consumir desde esta vista
-    this.API_ControllerName = "User";
+    this.API_ControllerName = "Users";
 
     //metodo constructor
     this.InitView = function () {
@@ -49,5 +49,5 @@ function UserViewController() {
 //instanciar la clase
 $(document).ready(function () {
     var userViewController = new UserViewController();
-    vc.InitView();
+    userViewController.InitView();
 });
