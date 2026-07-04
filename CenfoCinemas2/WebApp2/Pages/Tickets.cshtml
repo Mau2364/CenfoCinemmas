@@ -25,4 +25,58 @@
             </table>
         </div>
     </div>
+    <div class="row">
+    <div class="col-lg-6">
+
+        <form>
+
+            <fieldset>
+
+                <legend>Edición</legend>
+
+                <div class="form-group">
+                    <label for="txtId">Id</label>
+                    <input id="txtId" readonly type="number" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtPrice">Precio</label>
+                    <input id="txtPrice" type="number" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtSchedule">Horario</label>
+                    <input id="txtSchedule" type="time" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtDate">Fecha</label>
+                    <input id="txtDate" type="date" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtType">Tipo</label>
+                    <input id="txtType" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtMovieId" class="form-label mt-4">Película</label>
+
+                    <select id="txtMovieId" class="form-control">
+                        <option value="">Seleccione una película</option>
+                    </select>
+                </div>
+
+            </fieldset>
+
+        </form>
+
+        <br />
+
+        <button id="btnCreate" class="btn btn-primary">Create</button>
+        <button id="btnUpdate" class="btn btn-secondary">Update</button>
+        <button id="btnDelete" class="btn btn-danger">Delete</button>
+
+    </div>
+</div>
 </div>
